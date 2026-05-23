@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethical Hacking MCQ Exam</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+    :root {
+      --bg-1: #f4f7f2;
+      --bg-2: #e7efe2;
+      --card: #ffffff;
+      --ink: #17211b;
+      --muted: #5b6a5f;
+      --accent: #17623f;
+      --accent-2: #0f8a5f;
+      --danger: #b23a48;
+      --ok: #1b7f45;
+      --line: #d5e0d5;
+      --shadow: 0 12px 30px rgba(23, 33, 27, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(23, 98, 63, 0.12), transparent 35%),
+        radial-gradient(circle at 90% 85%, rgba(15, 138, 95, 0.14), transparent 40%),
+        linear-gradient(140deg, var(--bg-1), var(--bg-2));
+      min-height: 100vh;
+      animation: fadeIn 500ms ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .page {
+      width: min(980px, 94vw);
+      margin: 28px auto 48px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(1.2rem, 1.3vw + 1rem, 2rem);
+      line-height: 1.2;
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .status-grid {
+      margin-top: 8px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(4, minmax(110px, 1fr));
+    }
+
+    .pill {
+      background: #f8fbf8;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .pill strong {
+      color: var(--ink);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+    }
+
+    .exam {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .week {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .question {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.45;
+    }
+
+    .options {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      border: 1px solid var(--line);
+      background: #fafdf9;
+      border-radius: 14px;
+      padding: 12px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 24px 32px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      transition: all 180ms ease;
+    }
+
+    .option:hover {
+      transform: translateY(-1px);
+      border-color: #bcd0bf;
+      box-shadow: 0 6px 14px rgba(23, 33, 27, 0.06);
+    }
+
+    .option input {
+      margin-top: 4px;
+      accent-color: var(--accent-2);
+    }
+
+    .option-letter {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 20px;
+    }
+
+    .controls {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 140ms ease, opacity 140ms ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .btn-ghost {
+      background: #eef4ee;
+      color: var(--ink);
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    .result {
+      margin-top: 16px;
+      border: 1px dashed #b9cbbd;
+      border-radius: 12px;
+      padding: 12px;
+      background: #f7fbf7;
+      display: none;
+    }
+
+    .result.show { display: block; }
+
+    .score {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .rationale {
+      margin: 8px 0 0;
+      color: #2e3f34;
+      line-height: 1.5;
+      font-size: 0.94rem;
+    }
+
+    .feedback {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .feedback.ok {
+      color: var(--ok);
+    }
+
+    .feedback.bad {
+      color: var(--danger);
+    }
+
+    .answer-list {
+      margin-top: 10px;
+      max-height: 220px;
+      overflow: auto;
+      padding-right: 4px;
+      display: grid;
+      gap: 6px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.88rem;
+      color: #34443a;
+    }
+
+    .tiny {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 8px 0 0;
+    }
+
+    @media (max-width: 760px) {
+      .status-grid {
+        grid-template-columns: repeat(2, minmax(130px, 1fr));
+      }
+
+      .exam {
+        padding: 16px;
+      }
+
+      .question {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1 class="title">Ethical Hacking MCQ Exam</h1>
+      <p class="subtitle">Weeks 1-11 selected bank. Options are randomized per run, with balanced correct-answer letters across A/B/C/D.</p>
+      <div class="status-grid">
+        <div class="pill">Question: <strong id="qIndex">1</strong>/<strong id="qTotal">0</strong></div>
+        <div class="pill">Answered: <strong id="answeredCount">0</strong></div>
+        <div class="pill">Time: <strong id="timer">00:00</strong></div>
+        <div class="pill">Balance: <strong id="balance">A0 B0 C0 D0</strong></div>
+      </div>
+      <p class="tiny">Tip: choose one option, click Check Answer for instant result, then go Next Question. Use Restart to reshuffle.</p>
+    </section>
+
+    <section class="exam">
+      <h2 class="week" id="weekLabel">Week 1</h2>
+      <p class="question" id="questionText"></p>
+
+      <div class="options" id="optionsWrap"></div>
+
+      <div class="controls">
+        <button id="checkBtn" class="btn-main" type="button">Check Answer</button>
+        <button id="nextBtn" class="btn-ghost" type="button">Next Question</button>
+        <button id="restartBtn" class="btn-danger" type="button">Restart</button>
+      </div>
+
+      <div class="result" id="resultBox">
+        <p class="feedback" id="feedbackLine"></p>
+        <p class="score" id="scoreLine"></p>
+        <p class="rationale" id="rationaleLine"></p>
+        <div class="answer-list" id="answerKey"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const LETTERS = ["A", "B", "C", "D"];
+
+    const questionBank = [
+      // Week 1
+      {
+        week: "Week 1: Introduction",
+        q: "What is the official academic catalog module code assigned to this Ethical Hacking course?",
+        options: ["5CS021", "5CS035", "6CS012", "4CS088"],
+        correct: 1
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "What is the percentage weight distribution assigned to the final written examination component?",
+        options: ["10%", "40%", "50%", "100%"],
+        correct: 2
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "Which primary academic objective forms the central structural focus of this module's theoretical curriculum?",
+        options: ["Front-end web frameworks", "Hardware circuit architecture", "Vulnerability Assessment (VA)", "Relational database design"],
+        correct: 2
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "Which specific skill behavior must a student actively demonstrate to satisfy Learning Outcome 2 (LO2)?",
+        options: ["Strategic framework reflection", "Technical execution through system design and exploitation", "Collaborative team policy drafting", "Memorization of network acronyms"],
+        correct: 1
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "Where must all authorized technical security testing and tools application be strictly confined?",
+        options: ["Any public corporate website", "Designated laboratory boundaries", "Local residential internet routers", "Commercial cloud infrastructure without scoping limits"],
+        correct: 1
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "A student evaluates an enterprise's exposure by selecting an industry-standard framework. Which learning outcome does this action map to?",
+        options: ["Learning Outcome 1 (Strategic Reflection)", "Learning Outcome 2 (Technical Execution)", "Learning Outcome 3 (System Synthesis)", "Learning Outcome 4 (Policy Administration)"],
+        correct: 0
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "Two students submit practical portfolios with identical exploit configurations and scripts. How is this processed under module rules?",
+        options: ["Ignored as valid collaboration", "Treated as an academic integrity violation", "Partial automatic pass due to lab teamwork", "Handled informally by lab assistant only"],
+        correct: 1
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "What primarily distinguishes a malicious black-hat hacker from an ethical penetration tester?",
+        options: ["Specific exploitation tools used", "Use of encryption during exfiltration", "Explicit authorization and strict scope adherence", "Time of day scanning is performed"],
+        correct: 2
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "Why is a 10% midpoint MCQ test used before the 50% final exam?",
+        options: ["To replace portfolio grading", "To verify foundational knowledge before advanced phases", "To satisfy government software certification", "To force automation scripting before Week 6"],
+        correct: 1
+      },
+      {
+        week: "Week 1: Introduction",
+        q: "Applying a vulnerability assessment framework to protect a college network directly supports which professional responsibility?",
+        options: ["Maximizing router clock speed", "Protecting public data assets via authorized risk discovery and remediation", "Monetizing zero-day threats", "Standardizing third-party app development lifecycles"],
+        correct: 1
+      },
+
+      // Week 2
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "What is the correct order of the first three phases of the Ethical Hacking Lifecycle?",
+        options: ["Scanning, Gaining Access, Reconnaissance", "Reconnaissance, Scanning, Gaining Access", "Gaining Access, Covering Tracks, Scanning", "Reconnaissance, Gaining Access, Maintaining Access"],
+        correct: 1
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "Which phase is the foundational bedrock of the hacking lifecycle?",
+        options: ["Phase 5: Covering Tracks", "Phase 3: Gaining Access", "Phase 1: Reconnaissance", "Phase 2: Scanning"],
+        correct: 2
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "What is the primary objective of comprehensive footprinting?",
+        options: ["Overwhelming backend engine CPU", "Resetting firewall credentials", "Collecting intelligence to map visible attack surface", "Injecting scripts into form fields"],
+        correct: 2
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "Which characteristic defines passive reconnaissance?",
+        options: ["Flooding target switches with fake MAC records", "Direct interaction with target devices", "Gathering intelligence without direct target interaction", "Cracking local hashes with GPU clusters"],
+        correct: 2
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "What does OSINT stand for?",
+        options: ["Operating System Internal Network Tracking", "Open Source Intelligence", "Optical Security Interconnection Network Topology", "Online System Information National Trust"],
+        correct: 1
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "To discover domains linked to an organization using the legal registration name, which passive method is best?",
+        options: ["Traceroute", "ICMP broadcast flooding", "Reverse WHOIS lookup", "Banner grabbing via Telnet"],
+        correct: 2
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "Using IP2Location for country-level geolocation, what accuracy is typically expected?",
+        options: ["About 50.5%", "About 75.2%", "About 99.5%", "Exactly 100%"],
+        correct: 2
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "MTR shows a hop with Loss% = 14% over 100 packets. What does this indicate?",
+        options: ["Connection is fully secure", "Packet drop issue at that routing hop", "Target switched to stealth decoy mode", "Local ARP table is dropped"],
+        correct: 1
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "To identify internet block ranges assigned to a major US enterprise, which registry should be queried?",
+        options: ["RIPE", "ARIN", "APNIC", "/etc/resolv.conf"],
+        correct: 1
+      },
+      {
+        week: "Week 2: Footprinting and Reconnaissance",
+        q: "Why invest time in passive subdomain harvesting and email scraping early in an engagement?",
+        options: ["To trigger alarms early", "To avoid all later scanning phases", "To find forgotten assets that are weaker entry points", "To directly download hidden databases"],
+        correct: 2
+      },
+
+      // Week 3
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "What transition occurs when moving from Reconnaissance to Scanning?",
+        options: ["Ceasing technical work to write reports", "Shift from passive collection to active interaction", "Transfer database contents off-site", "Wipe system logs"],
+        correct: 1
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "Which parameter can be accurately uncovered during a network port scan?",
+        options: ["Plain-text user password", "Admin salary structures", "Open/closed ports and running services", "Power supply serial number"],
+        correct: 2
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "What does a live host return to an ICMP Echo Request?",
+        options: ["TCP SYN/ACK", "ICMP Echo Reply", "UDP Port Unreachable", "RST/ACK"],
+        correct: 1
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "How do scanners infer the target operating system during non-intrusive probes?",
+        options: ["Reading physical device labels", "Evaluating default initial TTL values", "Forcing local diagnostics dumps", "Extracting serial layout from domain registry"],
+        correct: 1
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "What is the primary objective of banner grabbing?",
+        options: ["Force firewall rules to drop", "Capture application header strings to identify versions", "Spoof router MAC address", "Disable host auditing services"],
+        correct: 1
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "Nmap decoy scan with -D Decoy1,Decoy2,ME has what effect?",
+        options: ["Encrypts all scan traffic", "Removes true source IP completely", "Blends real IP among fake scan sources", "Tunnels commands via anonymous proxies"],
+        correct: 2
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "What is a key limitation of Nmap decoy scanning (-D)?",
+        options: ["Cannot scan ports above 1024", "True source IP is still present in packet mix", "Crashes tester machine", "Needs target cooperation for banners"],
+        correct: 1
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "In hping3 -a 8.8.8.8 -S -c 1 192.168.1.50, what does -a do?",
+        options: ["Sets max scan speed", "Runs encrypted asynchronous handshake", "Spoofs packet source IP to 8.8.8.8", "Restricts scan to admin ports"],
+        correct: 2
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "Why is hping3 source-spoofed scanning called blind?",
+        options: ["It blinds local terminal output", "Replies go to spoofed IP, so tester cannot see them", "Randomized encryption prevents visualization", "It disables IDS interfaces"],
+        correct: 1
+      },
+      {
+        week: "Week 3: Scanning and Enumeration",
+        q: "When can port scanning create legal or criminal liability?",
+        options: ["When more than 50 ports are open", "When done without authorization and causes damage/downtime", "When using open-source OS", "When packet size exceeds 64-byte ICMP"],
+        correct: 1
+      },
+
+      // Week 4
+      {
+        week: "Week 4: SQL Injection",
+        q: "What structural flaw causes SQL Injection?",
+        options: ["Insufficient DB engine speed", "Untrusted input concatenated into SQL without validation/parameterization", "Using open-source backend software", "Allowing HTTP transport"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "What determines SQLi payload syntax design?",
+        options: ["Server OS version", "Targeted database column data type", "Client-server distance", "Number of routers"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "Why inject a single quote into a text field when testing SQLi?",
+        options: ["Encrypt payload before database", "Break out of predefined text string quotes", "Bypass rate limiting", "Trigger auto backup"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "What is a tautology in SQLi context?",
+        options: ["Column-length algorithm", "Expression that always evaluates true", "Credential reset format", "Metadata encryption key"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "What does '-- ' do in SQL injection?",
+        options: ["Double-check query syntax", "Comment out remaining query text", "Enable async compression", "Request table admin rights"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "A numeric field receives payload 1' OR 1=1 -- and errors. Most likely reason?",
+        options: ["No valid tables exist", "Numeric context does not use quotes; quote broke syntax", "WAF dropped packet for missing key", "Numeric columns need advanced scripts"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "For UNION-based SQLi, what first rule must be satisfied?",
+        options: ["Injected query must match original query column count", "Payload must be MD5 hashed", "Target must run Linux", "Remote DB logging must be disabled"],
+        correct: 0
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "How can attackers determine original query column count without source code?",
+        options: ["Upload large files until error", "Increment ORDER BY until DB error appears", "Inspect HTTP headers", "Guess using public schemas"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "Which MySQL metadata view lists structural table names?",
+        options: ["system.master_tables", "information_schema.tables", "schema.table_registry", "internal.db_columns"],
+        correct: 1
+      },
+      {
+        week: "Week 4: SQL Injection",
+        q: "Payload querying information_schema.columns with table_name='users' is used to do what?",
+        options: ["Delete the users table", "Enumerate column names in users table", "Directly bypass authentication", "Test MFA support"],
+        correct: 1
+      },
+
+      // Week 5
+      {
+        week: "Week 5: Web Hacking",
+        q: "What mapping design is typical in traditional web applications?",
+        options: ["Router-to-table mapping", "Pages map to functions; parameters map to function arguments", "Stylesheets map to kernel commands", "Cookies map to physical sectors"],
+        correct: 1
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "Where are input parameters visible when a form uses HTTP GET?",
+        options: ["In the URL query string", "In encrypted TCP metadata", "In temporary server root files", "Inside switch storage frames"],
+        correct: 0
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "What fundamental trait defines HTTP communication behavior?",
+        options: ["Stateful by default", "Stateless requests are independent", "Requires client-side DB apps", "Blocks all special characters"],
+        correct: 1
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "Which response header tells browser to store a session token?",
+        options: ["Get-Cookie:", "Set-Cookie:", "Store-Token:", "Session-Id:"],
+        correct: 1
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "What is Mutillidae in a cybersecurity lab context?",
+        options: ["Automated IPS", "Deliberately vulnerable web app for safe practice", "Commercial password hashing matrix", "Stealth packet sniffer"],
+        correct: 1
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "URL with ?firstname=Smith&lastname=Jones indicates which method?",
+        options: ["POST", "GET", "PUT", "HEAD"],
+        correct: 1
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "Why does a server track a user's PHPSESSID value?",
+        options: ["To map requests to authenticated session state and expiry", "To encrypt UI layouts", "To track GPS location", "To clear cache on logout"],
+        correct: 0
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "Changing product_price=9.99 to product_price=0.99 in intercepted request is what vulnerability?",
+        options: ["XSS", "Parameter tampering", "SQL table flooding", "DDoS"],
+        correct: 1
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "Where must transaction validation checks occur to prevent price manipulation?",
+        options: ["Server side against trusted backend data", "Hidden client-side HTML fields", "Third-party browser script", "Network switch ledger"],
+        correct: 0
+      },
+      {
+        week: "Week 5: Web Hacking",
+        q: "How does input allowlisting defend against parameter manipulation?",
+        options: ["Encrypt all inputs", "Only accept predefined valid formats/values", "Route through honeypots", "Force async DB model"],
+        correct: 1
+      },
+
+      // Week 6
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "What is the core definition of network sniffing?",
+        options: ["Modifying DNS routing tables", "Capturing and analyzing packets on the network", "Injecting commands into forms", "Randomizing app memory addresses"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "Which sniffing type is done without injecting traffic?",
+        options: ["Active sniffing", "Passive sniffing", "Stateful spoofing", "Asynchronous poisoning"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "Which attack broadcasts forged ARP responses on LAN?",
+        options: ["SQL Injection", "ARP Spoofing", "Slow HTTP Flood", "Buffer Overflow"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "What does HSTS stand for?",
+        options: ["Hardware Security Tunneling Standard", "HTTP Strict Transport Security", "Hash-based Stateful Traffic Sniffing", "Hypertext Sync Transmission Storage"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "Which tool is commonly used to capture and inspect packet streams?",
+        options: ["Mutillidae", "Wireshark", "BleachBit", "Tomahawk"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "MAC flooding in active sniffing attempts to trigger what state?",
+        options: ["CAM table overflow causing switch fail-open behavior", "Automatic encryption of cleartext data", "Router interface reset", "Cloud management switchover"],
+        correct: 0
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "By ARP poisoning workstation and gateway, attacker achieves which pattern?",
+        options: ["DoS", "MITM", "Buffer Overflow", "Blind SQLi"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "How does HSTS protect against SSL stripping?",
+        options: ["Encrypt browser local storage", "Blocks HTTP downgrade by forcing HTTPS", "Randomizes session IDs", "Routes through honeypots"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "With certificate pinning, what happens if attacker presents self-signed interception cert?",
+        options: ["Connection accepted with warning", "Connection rejected immediately", "App falls back to HTTP", "App rewrites trust store"],
+        correct: 1
+      },
+      {
+        week: "Week 6: Spoofing and Sniffing",
+        q: "Sniffed packets from E2EE messaging look like what?",
+        options: ["Readable cleartext", "Unreadable ciphertext without endpoint keys", "Executable SQL commands", "Structured memory addresses"],
+        correct: 1
+      },
+
+      // Week 7
+      {
+        week: "Week 7: Social Engineering",
+        q: "What is social engineering?",
+        options: ["Manipulating trust to obtain sensitive info or unauthorized access", "Cracking firewalls with scripts", "Replacing routers with cloud platforms", "Asynchronous DB configuration"],
+        correct: 0
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "How is social engineering often described?",
+        options: ["Hacking the Kernel", "Hacking the Mind", "Sniffing the Wire", "Flooding the Buffer"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "What are the two primary classes of social engineering tactics?",
+        options: ["State-controlled and peer-to-peer", "Human-based and computer-based", "Synchronous and asynchronous", "Parameter-focused and buffer-driven"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "Which attack uses spoofed urgent emails to trick users into giving credentials?",
+        options: ["MAC flooding", "Phishing", "Ret2libc", "Banner grabbing"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "Approximately what percentage of organizations regularly deploy firewall defenses?",
+        options: ["25%", "50%", "98%", "100%"],
+        correct: 2
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "If 99% use antivirus but 82% still get breached, what key lesson is highlighted?",
+        options: ["Abandon antivirus", "Human element often bypasses technical controls", "Move all DBs to open-source formats", "Use longer firewall encryption"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "Attacker in uniform with tools bypasses front desk. Which tactic is this?",
+        options: ["Phishing", "Repairman impersonation", "SQL Injection", "Covering tracks"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "Unmonitored conference room has live network ports. Best practice?",
+        options: ["Disable endpoint encryption", "Secure unmonitored network-access areas and enforce badge policy", "Replace switches with hubs", "Continuously port-scan clients"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "Why use centralized reporting against social engineering campaigns?",
+        options: ["Auto-rewrite breached source code", "Correlate scattered indicators into coordinated attack patterns", "Remove need for awareness training", "Force password-salt updates"],
+        correct: 1
+      },
+      {
+        week: "Week 7: Social Engineering",
+        q: "What is the strongest defense combination against social engineering risk?",
+        options: ["Awareness training + indicator knowledge + standardized reporting channels", "Multiple firewalls with stripping engines", "Cleartext off-site hub migration", "Daily log wiping"],
+        correct: 0
+      },
+
+      // Week 8
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "What is the main objective of a DoS attack?",
+        options: ["Extract sensitive backend data", "Exhaust resources to deny service availability", "Hide forensic logs", "Modify transaction logic"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "What distinguishes DDoS from DoS?",
+        options: ["Uses cleartext DB commands", "Uses distributed botnets to flood one target", "Needs physical switch access", "Produces no traffic signature"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "Which botnet was linked to the 15.72 Tbps Azure cloud DDoS attack?",
+        options: ["Mutillidae", "Aisuru", "yescrypt swarm", "Snort array"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "Which protocol is commonly used in volumetric flooding due to stateless behavior?",
+        options: ["TCP", "UDP", "HTTP", "SSH"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "Which attack opens many HTTP connections and sends headers very slowly?",
+        options: ["UDP amplification", "Slow HTTP attack", "MAC flooding", "Fast HTTP flood"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "A 500,000-source-IP flood peaks at 3.64 billion pps. What mitigation architecture is required?",
+        options: ["Manual iptables flush", "Distributed cloud scrubbing/protection architecture", "Switch target OS to legacy Windows", "Disable web server timeouts"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "Nginx settings client_body_timeout 10s and client_header_timeout 10s mitigate which threat?",
+        options: ["Fast HTTP flood", "Slow HTTP attack", "UDP amplification", "SQL parameter tampering"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "Which command syntax sets IIS web connection timeout to 30 seconds?",
+        options: ["iptables -A INPUT -p tcp --dport 80 -j DROP", "appcmd.exe set config -section:system.applicationHost/webLimits /connectionTimeout:\"00:00:30\"", "hping3 -a 127.0.0.1 -S port 80", "netsh advfirewall firewall delete rule name=\"all\""],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "iptables hashlimit rule allowing 20/sec burst 50 on port 80 has what effect?",
+        options: ["Blocks all HTTP", "Rate-limits new HTTP connections to resist Fast HTTP floods", "Encrypts all web traffic", "Routes traffic into honeypot"],
+        correct: 1
+      },
+      {
+        week: "Week 8: DoS and DDoS",
+        q: "How does fast HTTP flood differ from volumetric UDP flood in impact?",
+        options: ["Fills CAM table", "Exhausts app-layer CPU/RAM with many heavy requests", "Disables terminal input", "Corrupts stored password hashes"],
+        correct: 1
+      },
+
+      // Week 9
+      {
+        week: "Week 9: System Hacking",
+        q: "What metadata is stored in modern Linux /etc/passwd?",
+        options: ["Cleartext passwords and salts", "User metadata including UID/GID/home/shell", "Automated forensic logs", "Kernel utility memory addresses"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "Which character in /etc/passwd indicates hash is in /etc/shadow?",
+        options: ["$", "x", "*", "!"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "Who can read /etc/shadow by default?",
+        options: ["Any local user", "Root user only", "External scanning tools", "Anonymous web connections"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "Which MCF identifier corresponds to MD5?",
+        options: ["$y$", "$1$", "$5$", "$6$"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "Which path stores Linux bash command history?",
+        options: ["HKCU\\Software\\Docs", "~/.bash_history", "/var/log/nginx/access.log", "/tmp/recently-used.xbel"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "MCF hash starting with $6$ uses which algorithm?",
+        options: ["MD5", "SHA-512", "yescrypt", "bcrypt"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "What security advantage does yescrypt provide against hardware cracking?",
+        options: ["Shorter hash output", "Memory-hard design slows GPU/ASIC brute force", "No network data needed for login", "Automatically updates firewall rules"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "Which Windows registry path stores recently opened documents?",
+        options: ["HKLM\\SYSTEM\\CurrentControlSet\\Services", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Recent Docs", "HKCU\\Software\\Wipe\\Tracks", "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Authentication"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "When clearing Recent Docs traces, which entry should remain?",
+        options: ["Delete the entire key", "Keep (Default) and remove historical value entries", "Replace text with LaTeX", "Set master salt to zero"],
+        correct: 1
+      },
+      {
+        week: "Week 9: System Hacking",
+        q: "Which tools are commonly used for secure wiping on Linux?",
+        options: ["Wireshark", "BleachBit or Wipe", "Nmap", "Mutillidae"],
+        correct: 1
+      },
+
+      // Week 10
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "What is the primary function of an IDS?",
+        options: ["Automated database backups", "Monitor events/traffic for malicious activity and alert", "Encrypt form parameters", "Randomize memory base addresses"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "How does a network IDS analyze subnet traffic?",
+        options: ["Reading physical server labels", "Packet sniffing and inspection of live data streams", "Forcing password updates", "Injecting quotes into forms"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "What occurs when packet content matches an IDS signature?",
+        options: ["Packet converted to secure LaTeX", "An alert/security alarm is triggered", "Target server powers off NIC", "Database creates admin account"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "What are the two sections of a standard Snort rule?",
+        options: ["Base pointer and return offset", "Rule header and rule options", "SQL context and parameter matrix", "Decoy pool and spoof index"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "What is a honeypot in enterprise defense?",
+        options: ["Tool to delete old logs", "Decoy system to attract and analyze attacker behavior", "Hardware switch with rate limiting", "Encrypted user-salt schema"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "Snort rule alert tcp any any -> 192.168.1.5 22 triggers on what traffic?",
+        options: ["Any UDP to outside from 192.168.1.5", "Any TCP from any source to 192.168.1.5:22", "Only encrypted web data on port 80", "SQL enumeration commands"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "How can an attacker test whether a port is likely a honeypot?",
+        options: ["ARIN geolocation lookup", "Probe full handshake behavior for timing/protocol anomalies", "Hash server public keys", "Count lines in /etc/passwd"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "Which tool suite is used to probe and identify potential honeypots?",
+        options: ["BleachBit and Wipe", "Nessus, Hping, Hunter, and Send-Safe Honeypot tools", "Mutillidae and Cookie-Editor", "Tomahawk and Proxifier only"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "Which utility set is designed to test firewall evasion resilience?",
+        options: ["Wireshark", "Tomahawk or Atelier Web Firewall Tester", "BleachBit", "Mutillidae"],
+        correct: 1
+      },
+      {
+        week: "Week 10: IDS, Firewalls, Honeypots",
+        q: "How do packet fragment generators bypass rigid signature-based IDS?",
+        options: ["Compress data using memory-hard algorithms", "Split payload into tiny fragments reassembled only at destination", "Delete TCP return addresses", "Force async DB rollback"],
+        correct: 1
+      },
+
+      // Week 11
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "What is a buffer overflow vulnerability?",
+        options: ["Program writes beyond fixed buffer boundaries", "Database runs out of primary keys", "UDP timeout from flood", "Session token leak"],
+        correct: 0
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "Why do buffer overflows still appear in modern enterprise environments?",
+        options: ["Java lacks encryption support", "C/C++ and legacy systems remain widespread", "Firewalls cannot parse app parameters", "Switches fail open on text fields"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "Which memory region handles local variables and return addresses in LIFO order?",
+        options: ["Heap", "Stack", "Registry tree", "CAM table"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "Which pointer is targeted to hijack control flow in stack attacks?",
+        options: ["argc", "Return address", "Data type delimiter", "Session cookie"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "What is shellcode?",
+        options: ["Tautology", "Raw machine code payload to execute attacker commands", "Canary value", "Decoy marker"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "How does Java prevent classic buffer overflows?",
+        options: ["Uses yescrypt memory model", "Runtime bounds checking with exceptions", "Encrypts stack variables", "Forces async execution"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "The sequence \\x90\\x90\\x90\\x90 in exploit payload indicates what?",
+        options: ["Encrypted delimiter string", "NOP sled leading execution into shellcode", "SQL comment sequence", "Table name filter"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "Why must null bytes (0x00) be avoided in shellcode strings?",
+        options: ["They trigger firewall limits", "They terminate C strings and truncate payload copy", "They force CPU unaligned mode", "They invalidate canary signatures"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "How does NX bit mitigate stack-based exploit execution?",
+        options: ["Randomizes library base addresses", "Marks stack memory non-executable", "Drops TCP segments with shellcode", "Blocks form concatenation"],
+        correct: 1
+      },
+      {
+        week: "Week 11: Buffer Overflows",
+        q: "How does ASLR complicate buffer overflow exploitation?",
+        options: ["Blocks text input", "Randomizes stack/heap/library addresses each run", "Removes single quotes", "Rate-limits port 80 traffic"],
+        correct: 1
+      }
+    ];
+
+    const state = {
+      questions: [],
+      current: 0,
+      answers: [],
+      reviewed: [],
+      startedAt: Date.now(),
+      timerHandle: null,
+      finished: false
+    };
+
+    const ui = {
+      qIndex: document.getElementById("qIndex"),
+      qTotal: document.getElementById("qTotal"),
+      answeredCount: document.getElementById("answeredCount"),
+      timer: document.getElementById("timer"),
+      balance: document.getElementById("balance"),
+      weekLabel: document.getElementById("weekLabel"),
+      questionText: document.getElementById("questionText"),
+      optionsWrap: document.getElementById("optionsWrap"),
+      checkBtn: document.getElementById("checkBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      restartBtn: document.getElementById("restartBtn"),
+      resultBox: document.getElementById("resultBox"),
+      feedbackLine: document.getElementById("feedbackLine"),
+      scoreLine: document.getElementById("scoreLine"),
+      rationaleLine: document.getElementById("rationaleLine"),
+      answerKey: document.getElementById("answerKey")
+    };
+
+    function shuffle(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function makeBalancedTargets(total) {
+      const base = Math.floor(total / 4);
+      const extra = total % 4;
+      const counts = [base, base, base, base];
+      const extraSlots = shuffle([0, 1, 2, 3]).slice(0, extra);
+      extraSlots.forEach((idx) => counts[idx]++);
+
+      const targets = [];
+      counts.forEach((count, idx) => {
+        for (let i = 0; i < count; i++) targets.push(idx);
+      });
+      return { targets: shuffle(targets), counts };
+    }
+
+    function buildExam() {
+      const source = shuffle(questionBank);
+      const { targets, counts } = makeBalancedTargets(source.length);
+
+      state.questions = source.map((qObj, i) => {
+        const correctLetterIndex = targets[i];
+        const correctText = qObj.options[qObj.correct];
+        const wrong = qObj.options.filter((_, idx) => idx !== qObj.correct);
+        const wrongShuffled = shuffle(wrong);
+
+        const displayOptions = new Array(4);
+        displayOptions[correctLetterIndex] = correctText;
+
+        let p = 0;
+        for (let slot = 0; slot < 4; slot++) {
+          if (slot === correctLetterIndex) continue;
+          displayOptions[slot] = wrongShuffled[p++];
+        }
+
+        return {
+          ...qObj,
+          displayOptions,
+          correctLetterIndex
+        };
+      });
+
+      state.answers = new Array(state.questions.length).fill(null);
+      state.reviewed = new Array(state.questions.length).fill(false);
+      state.current = 0;
+      state.finished = false;
+      state.startedAt = Date.now();
+
+      ui.qTotal.textContent = String(state.questions.length);
+      ui.balance.textContent = `A${counts[0]} B${counts[1]} C${counts[2]} D${counts[3]}`;
+      ui.resultBox.classList.remove("show");
+      ui.feedbackLine.className = "feedback";
+      ui.feedbackLine.textContent = "";
+      ui.scoreLine.textContent = "";
+      ui.rationaleLine.textContent = "";
+      ui.answerKey.innerHTML = "";
+    }
+
+    function getWeekReason(week) {
+      if (week.includes("Week 1")) return "it follows the module structure, learning outcomes, and ethical boundaries defined in the introduction.";
+      if (week.includes("Week 2")) return "it matches reconnaissance and footprinting techniques used to gather intelligence safely and systematically.";
+      if (week.includes("Week 3")) return "it reflects scanning and enumeration behavior used to actively identify hosts, ports, and services.";
+      if (week.includes("Week 4")) return "it is consistent with SQL injection logic, query context, and defensive parameterization principles.";
+      if (week.includes("Week 5")) return "it aligns with web security fundamentals such as HTTP behavior, session control, and server-side validation.";
+      if (week.includes("Week 6")) return "it fits spoofing/sniffing concepts, including packet interception risks and transport-layer protections.";
+      if (week.includes("Week 7")) return "it reflects social engineering principles centered on human factors, trust abuse, and reporting controls.";
+      if (week.includes("Week 8")) return "it matches DoS/DDoS mechanics and the mitigation strategy expected at scale.";
+      if (week.includes("Week 9")) return "it is based on system hacking fundamentals such as account metadata, hashes, and artifact traces.";
+      if (week.includes("Week 10")) return "it matches IDS, firewall, and honeypot detection/evasion concepts used in monitoring and defense.";
+      if (week.includes("Week 11")) return "it reflects buffer overflow memory behavior and modern exploit mitigation controls.";
+      return "it is the only option that matches the core concept being tested.";
+    }
+
+    function buildAnswerFeedback(q, selected) {
+      const correct = q.correctLetterIndex;
+      const correctLetter = LETTERS[correct];
+      const correctText = q.displayOptions[correct];
+      const reason = getWeekReason(q.week || "");
+
+      if (selected === correct) {
+        return `Correct: ${correctLetter} (${correctText}) is right because ${reason}`;
+      }
+
+      const selectedLetter = selected === null ? "-" : LETTERS[selected];
+      const selectedText = selected === null ? "no option selected" : q.displayOptions[selected];
+      return `Correct answer is ${correctLetter} (${correctText}) because ${reason} Your choice ${selectedLetter} (${selectedText}) does not match that concept.`;
+    }
+
+    function showQuestionFeedback() {
+      const q = state.questions[state.current];
+      const selected = state.answers[state.current];
+      const correct = q.correctLetterIndex;
+      const selectedLetter = selected === null ? "-" : LETTERS[selected];
+      const correctLetter = LETTERS[correct];
+      const correctText = q.displayOptions[correct];
+
+      ui.feedbackLine.className = selected === correct ? "feedback ok" : "feedback bad";
+      ui.feedbackLine.textContent = selected === correct ? "Correct" : "Incorrect";
+      ui.scoreLine.textContent = `Your answer: ${selectedLetter} | Correct answer: ${correctLetter} (${correctText})`;
+      ui.rationaleLine.textContent = `Feedback: ${buildAnswerFeedback(q, selected)}`;
+      ui.answerKey.innerHTML = "";
+      ui.resultBox.classList.add("show");
+    }
+
+    function showFinalSummary() {
+      let score = 0;
+      const keyLines = [];
+
+      state.questions.forEach((q, idx) => {
+        const selected = state.answers[idx];
+        const correct = q.correctLetterIndex;
+        if (selected === correct) score++;
+
+        const selectedLetter = selected === null ? "-" : LETTERS[selected];
+        const correctLetter = LETTERS[correct];
+        keyLines.push(`Q${idx + 1}: selected ${selectedLetter}, correct ${correctLetter}`);
+      });
+
+      const percent = ((score / state.questions.length) * 100).toFixed(1);
+      ui.feedbackLine.className = "feedback";
+      ui.feedbackLine.textContent = "Quiz Complete";
+      ui.scoreLine.textContent = `Final score: ${score}/${state.questions.length} (${percent}%)`;
+      ui.rationaleLine.textContent = "Feedback: Review your answers below to identify weak areas and revise by topic/week.";
+      ui.answerKey.innerHTML = keyLines.map((line) => `<div>${line}</div>`).join("");
+      ui.resultBox.classList.add("show");
+    }
+
+    function renderQuestion() {
+      const q = state.questions[state.current];
+      ui.weekLabel.textContent = q.week;
+      ui.questionText.textContent = q.q;
+      ui.qIndex.textContent = String(state.current + 1);
+      ui.answeredCount.textContent = String(state.reviewed.filter((x) => x).length);
+
+      ui.optionsWrap.innerHTML = "";
+
+      q.displayOptions.forEach((opt, idx) => {
+        const label = document.createElement("label");
+        label.className = "option";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "q-option";
+        input.value = String(idx);
+        input.checked = state.answers[state.current] === idx;
+        input.disabled = state.reviewed[state.current] || state.finished;
+
+        input.addEventListener("change", () => {
+          if (state.reviewed[state.current]) return;
+          state.answers[state.current] = idx;
+        });
+
+        const letterWrap = document.createElement("div");
+        letterWrap.className = "option-letter";
+        letterWrap.textContent = LETTERS[idx] + ".";
+
+        const txt = document.createElement("div");
+        txt.textContent = opt;
+
+        label.appendChild(input);
+        label.appendChild(letterWrap);
+        label.appendChild(txt);
+        ui.optionsWrap.appendChild(label);
+      });
+
+      ui.checkBtn.disabled = state.reviewed[state.current] || state.finished;
+      ui.nextBtn.disabled = !state.reviewed[state.current] || state.finished;
+      ui.nextBtn.textContent = state.current === state.questions.length - 1 ? "Finish Quiz" : "Next Question";
+
+      if (state.reviewed[state.current] && !state.finished) {
+        showQuestionFeedback();
+      } else if (!state.finished) {
+        ui.resultBox.classList.remove("show");
+        ui.feedbackLine.className = "feedback";
+        ui.feedbackLine.textContent = "";
+        ui.scoreLine.textContent = "";
+        ui.rationaleLine.textContent = "";
+        ui.answerKey.innerHTML = "";
+      }
+
+      if (state.finished) {
+        showFinalSummary();
+      }
+    }
+
+    function startTimer() {
+      if (state.timerHandle) clearInterval(state.timerHandle);
+      state.timerHandle = setInterval(() => {
+        const seconds = Math.floor((Date.now() - state.startedAt) / 1000);
+        const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
+        const ss = String(seconds % 60).padStart(2, "0");
+        ui.timer.textContent = `${mm}:${ss}`;
+      }, 500);
+    }
+
+    ui.checkBtn.addEventListener("click", () => {
+      if (state.finished || state.reviewed[state.current]) return;
+      const selected = state.answers[state.current];
+
+      if (selected === null) {
+        ui.feedbackLine.className = "feedback bad";
+        ui.feedbackLine.textContent = "Please choose an option first.";
+        ui.scoreLine.textContent = "";
+        ui.rationaleLine.textContent = "Choose one option to see immediate feedback and rationale.";
+        ui.answerKey.innerHTML = "";
+        ui.resultBox.classList.add("show");
+        return;
+      }
+
+      state.reviewed[state.current] = true;
+      ui.answeredCount.textContent = String(state.reviewed.filter((x) => x).length);
+      renderQuestion();
+    });
+
+    ui.nextBtn.addEventListener("click", () => {
+      if (state.finished || !state.reviewed[state.current]) return;
+
+      if (state.current < state.questions.length - 1) {
+        state.current++;
+        renderQuestion();
+      } else {
+        state.finished = true;
+        ui.checkBtn.disabled = true;
+        ui.nextBtn.disabled = true;
+        renderQuestion();
+      }
+    });
+
+    ui.restartBtn.addEventListener("click", () => {
+      buildExam();
+      startTimer();
+      renderQuestion();
+    });
+
+    buildExam();
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+</html>
